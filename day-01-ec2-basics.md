@@ -89,3 +89,55 @@ T-family on **On-Demand pricing**, because it is low-cost, supports CPU bursting
 I learned how the T-family CPU credit system works and why it is suitable for workloads with low baseline usage and occasional spikes. I also understood why M-family instances cost more, since they provide consistent CPU performance without relying on credits.
 
 T-family instances can burst independently as long as CPU credits are available and instance limits are not exceeded. Bursting is not directly affected by other tenants due to AWS’s isolation mechanisms (Nitro system).
+
+---
+
+## Later Clarifications (Added after Day 2)
+
+### CPU Credits Scope
+CPU credits and bursting apply **only to CPU performance**.  
+They do not increase network bandwidth, memory, or storage performance.
+
+Bursting in this context is a form of **vertical scaling** limited to CPU.
+
+---
+
+### Unlimited Mode (T Family)
+T-family instances support **Unlimited mode**, where the instance can continue bursting even after CPU credits are exhausted.
+
+In this mode:
+- AWS allows continued bursting
+- Extra CPU usage is billed additionally
+
+This helps avoid sudden performance drops but increases cost.
+
+---
+
+### Additional EC2 Instance Families
+T, M, C, and R are not the only EC2 instance families.
+
+Some other important families include:
+- **X** – Extreme memory, used for in-memory databases
+- **P** – GPU-based, used for graphics and ML workloads
+- **G** – GPU-based, optimized for graphics rendering
+- **F** – FPGA-based, for custom hardware acceleration
+- **H** – HDD-backed, balanced compute and memory
+- **I** – High IOPS, SSD-backed storage
+- **D** – Dense storage with high disk-to-compute ratio
+- **Z** – High compute and memory with high clock speed
+
+---
+
+## Cross-Day Understanding (From Day 2 Learning)
+I learned that instance sizes cannot be compared across families.
+
+For example:
+- `t3.medium` is **not equivalent** to `m5.medium`
+
+Each family is optimized for a different purpose:
+- **T** – cost-sensitive, burstable usage
+- **M** – stable, predictable performance
+
+Instance size only has meaning **within the same family**.
+
+
