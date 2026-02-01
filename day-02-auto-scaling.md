@@ -106,4 +106,42 @@ Removes instances when:
 ---
 
 ## What I Understood Today
-I understood how Auto Scaling uses desired capacity as the control point and how minimum and maximum limits act as safety boundaries. I also learned that traffic changes alone do not instantly change instance count unless scaling policies are triggered.
+I understood how Auto Scaling uses **desired capacity** as the control point and how minimum and maximum limits act as safety boundaries. I also learned that traffic changes alone do not instantly change instance count unless scaling policies are triggered.
+
+---
+
+## Cross-Day Understanding (From Day 5 Learning)
+
+### Auto Scaling Group (ASG)
+An Auto Scaling Group (ASG) is a **logical controller** that maintains the desired number of EC2 instances using a launch template.
+
+Auto Scaling is the **service**, and ASG is the **controller inside that service**.
+
+ASG workflow:
+- A metric crosses a threshold (CPU, requests, etc.)
+- A scaling policy is triggered
+- Desired capacity is updated
+- ASG adds or removes EC2 instances to match Desired
+
+ASG always chases **Desired Capacity**, bounded by **Minimum and Maximum**.
+
+---
+
+### Question
+Who monitors metrics and triggers scaling?
+
+**Answer:**
+- CloudWatch monitors metrics
+- Scaling policies are attached to the ASG
+- When a metric breaches a threshold:
+  - CloudWatch alarms fire
+  - The alarm triggers the scaling policy
+  - The policy updates desired capacity
+
+---
+
+### Question
+Who changes desired capacity?
+
+**Answer:**  
+The **scaling policy** changes desired capacity.

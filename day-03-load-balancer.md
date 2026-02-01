@@ -126,7 +126,7 @@ AZ characteristics:
 
 This makes ALB + multi-AZ deployment a key design pattern for high availability.
 ---
-## Cross-Day Understanding (From Day 5 Learning)
+
 ## Cross-Day Understanding (From Day 5 Learning)
 
 An Availability Zone (AZ) can consist of **one or more data center buildings**.
