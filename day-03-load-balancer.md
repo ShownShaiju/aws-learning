@@ -125,5 +125,17 @@ AZ characteristics:
 - Load balancers automatically survive AZ failures when configured correctly
 
 This makes ALB + multi-AZ deployment a key design pattern for high availability.
+---
+## Cross-Day Understanding (From Day 5 Learning)
+## Cross-Day Understanding (From Day 5 Learning)
 
+An Availability Zone (AZ) can consist of **one or more data center buildings**.
+
+Each AZ is:
+- Physically isolated from other AZs
+- Has its own power supply
+- Has independent cooling
+- Has separate networking
+
+This physical isolation is why deploying resources across multiple AZs improves fault tolerance and availability.
 
