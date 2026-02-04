@@ -145,3 +145,34 @@ Who changes desired capacity?
 
 **Answer:**  
 The **scaling policy** changes desired capacity.
+
+
+## Cross-Day Understanding (From Day 7 Learning)
+### How ASG knows an instance is unhealthy
+
+ASG can use:
+- EC2 health checks (basic)
+- ALB health checks (recommended)
+
+Flow:
+- Target Group marks instance unhealthy
+- ALB removes it from traffic
+- ASG terminates and replaces it
+---
+### Scaling Flow
+
+Traffic increases
+->
+ALB metrics increase
+->
+CloudWatch alarm triggers
+->
+ASG scaling policy fires
+->
+Desired capacity increases
+->
+ASG launches new EC2
+->
+Target Group health checks pass
+->
+ALB starts routing traffic
