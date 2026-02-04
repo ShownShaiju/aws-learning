@@ -139,3 +139,55 @@ Each AZ is:
 
 This physical isolation is why deploying resources across multiple AZs improves fault tolerance and availability.
 
+## Cross-Day Understanding (From Day 7 Learning)
+### What is a Target Group?
+A Target Group is an ALB resource.
+
+It is:
+- A logical group of backend targets
+- Used by ALB to route traffic
+- Responsible for health checks
+
+ALB never sends traffic directly to EC2.
+It always sends traffic to a Target Group.
+
+---
+### What does a Target Group do?
+
+A Target Group:
+- Maintains a list of targets (EC2, ASG, Lambda)
+- Performs health checks
+- Tells ALB which targets are healthy
+
+Target Group decides:
+- Eligible for traffic
+- Not eligible for traffic
+---
+### What Target Group does NOT do
+
+Target Group does NOT:
+- Know CPU usage
+- Know memory usage
+- Know if app is “busy”
+
+If an instance:
+- Responds correctly to health check
+
+It is considered healthy
+
+Busy Dosent means unhealthy
+
+---
+ALB can route traffic based on URL path.
+
+/images/* → Target Group Images
+
+/api/*    → Target Group API
+
+/admin/*  → Target Group Admin
+
+ALB:
+- Reads the request
+- Matches the path
+- Forwards to correct target group
+
