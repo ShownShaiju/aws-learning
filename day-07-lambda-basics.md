@@ -92,6 +92,10 @@ Cold start happens when:
 - A new execution environment is created
 - Lambda is attached to a VPC (slower due to ENI creation)
 
+Typical range:
+- Non-VPC: ~10–100 ms
+- VPC: ~100–1000 ms
+
 Warm starts are faster because AWS reuses the environment.
 
 **Important:**  
@@ -196,3 +200,18 @@ Because of this, Lambda is **not suitable** for:
 - I learned about **EventBridge**, which is AWS’s equivalent of Linux cron.
 - I also learned about **ENI (Elastic Network Interface)**, which Lambda uses to access VPC resources.
 - ENI creation takes time, which increases cold start latency for VPC-attached Lambdas.
+
+## Cross-Day Understanding (From Day 10 Learning)
+
+API Gateway + Lambda replaces ALB + EC2
+
+- Lambda cannot listen on ports
+- Lambda cannot accept HTTP directly
+
+**Serverless App**
+
+Flow:
+Browser
+ → DNS
+ → API Gateway
+ → Lambda
