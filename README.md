@@ -29,23 +29,40 @@ The goal is to understand **how AWS services behave in real systems**, not just 
 - `day-07-lambda-basics.md`  
   Lambda execution model, event-driven compute, cold vs warm starts, IAM roles, VPC access, and scaling behavior.
 
+- `day-08-s3-lifecycle-and-storageClass.md`
+  S3 storage classes, lifecycle policies, cost optimization strategies, minimum storage duration, and retrieval behavior.
+
+- `day-09-rds-and-dynamo-db.md`
+  RDS architecture (Multi-AZ vs Read Replicas), database scaling strategies, DynamoDB partitioning, consistency models, and global tables.
+
+- `day-10-api-gateway.md`
+  API Gateway architecture, Lambda integration, routing models, and differences from ALB.
+
+- `day-11-sns-sqs-dlq.md`
+  Messaging patterns, decoupling systems, SNS vs SQS, and dead-letter queue handling.
+
+- `day-12-route53-and-global-accelerator.md`
+  DNS fundamentals, routing policies, health checks, and global traffic optimization.
+
+- `day-13-elastic-ip-&-elastic-cache(Redis).md`
+  Elastic IP behavior, static addressing patterns, and caching fundamentals with ElastiCache.
+
 More topics will be added as learning progresses.
 
 ---
 
 ## How to use this repo
 
-- Each file represents one focused learning session
-- Notes may be refined later as understanding improves
-- Cross-day sections capture connections between services
-- Commit history reflects learning progression, not perfection
+* Each file represents one focused learning session
+* Notes evolve as understanding deepens
+* Cross-day sections connect services into system-level thinking
+* Commit history reflects progression, corrections, and refinements
 
 ---
 
 ## Why this repo exists
 
-- To build strong AWS and cloud fundamentals
-- To develop a clear mental model of cloud infrastructure
-- To practice clean documentation and Git workflows
-- To track learning honestly over time
-  
+* To build strong AWS and cloud architecture fundamentals
+* To move from theoretical understanding to system-level clarity
+* To practice disciplined documentation and Git workflows
+* To create a visible record of technical growth
