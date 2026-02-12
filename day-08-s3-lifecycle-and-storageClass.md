@@ -158,3 +158,220 @@ Minimum duration means the minimum amount of time an object needed to be stored 
 
 i.e,Minimum storage duration does NOT prevent lifecycle transitions.
 It only affects billing
+
+---
+
+# Cross-Day Understanding (From Day 13 Learning)
+
+
+## What is Versioning 
+
+When versioning is enabled:
+
+Every time I:
+
+* Upload
+* Update
+* Delete
+
+S3 does NOT remove old data.
+
+Instead it creates versions.
+
+Example:
+
+```
+report.pdf (v1)
+report.pdf (v2)
+```
+
+If I delete the object:
+
+S3 creates something called a **delete marker**.
+
+Delete marker:
+
+* Becomes the latest version
+* Makes object appear deleted
+* But older versions still exist underneath
+
+This is why versioning protects from:
+
+* Accidental deletion
+* Overwriting
+* Ransomware attacks
+
+It does NOT stop attack.
+It prevents permanent data loss.
+
+---
+
+## How does Delete Marker work
+
+When I delete object with versioning enabled:
+
+S3:
+
+* Adds a delete marker
+* Does NOT delete previous versions
+
+If I want the file back:
+
+* I remove the delete marker
+* Or restore older version
+
+So deletion becomes reversible.
+
+That’s the whole point.
+```
+[v3] Delete Marker (Current)  <-- App sees "404 Not Found"
+[v2] report.pdf               <-- Still exists, costing money
+[v1] report.pdf               <-- Still exists, costing money
+```
+---
+
+## What is Object Lock
+
+Used when:
+Data must NOT be deleted for fixed period.
+
+Requires:
+
+* Versioning enabled
+
+Two modes:
+
+---
+
+## Governance Mode
+
+Admins with special permission can override.
+
+Used when:
+
+* Company wants control
+* Legal team may remove if needed
+
+---
+
+## Compliance Mode
+
+No one can delete.
+Not even root user.
+
+Used for:
+
+* Financial records
+* Government regulation
+* Legal mandates
+
+If question says:
+“Even administrator must not delete”
+
+Answer → Compliance mode.
+
+---
+
+## What is Legal Hold
+
+Different from retention period.
+
+Retention:
+
+* Time based
+* Auto expires
+
+Legal Hold:
+
+* No expiry
+* Must be manually removed
+
+Used during:
+
+* Investigation
+* Audit
+* Lawsuit
+
+It freezes the object.
+
+---
+
+## What is Replication
+
+Replication copies objects automatically.
+
+Requires:
+
+* Versioning enabled
+* IAM role
+
+---
+
+## CRR (Cross Region Replication)
+
+Region A → Region B
+
+Used for:
+
+* Disaster recovery
+* Data residency
+* Global redundancy
+
+S3 assumes IAM role to replicate data.
+Bucket policy alone is not enough.
+
+> Hidden Cost: Cross-Region Replication (CRR) isn't just a copy. You pay Data Transfer fees for every byte that leaves Region A to go to Region B. Don't turn this on for massive buckets unless you have a budget.
+
+---
+
+## SRR (Same Region Replication)
+
+Same region, different bucket.
+
+Used when:
+
+* Separate access control required
+* Analytics team needs copy
+* Compliance separation
+
+Not as common but exam may mention it.
+
+---
+
+## Encryption (Server-Side Encryption)
+
+SSE = Server-Side Encryption
+
+Data is encrypted before being stored.
+
+---
+
+### SSE-S3
+
+AWS manages encryption key.
+Simple.
+Default option.
+
+---
+
+### SSE-KMS
+
+Using AWS Key Management Service (KMS) for encrytion.
+
+Gives:
+
+* Audit trail
+* Key rotation
+* Fine-grained control
+
+---
+
+### SSE-C
+
+Customer provides encryption key.
+
+Rarely Used.
+
+More operational complexity.
+
+---
