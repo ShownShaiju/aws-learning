@@ -334,3 +334,30 @@ Can IAM alone make S3 public?
 **Answer:**  
 No. Public users are not IAM identities.  
 Public access requires bucket policies or CloudFront.
+
+
+# Cross-Day Understanding (From Day 13 Learning)
+
+### Intelligent Tiering (Advanced Storage Layer)
+
+Intelligent Tierning is used when access pattern is unknown and cant make a effective lifecycle policy:
+
+In Intelligent Tiering aws moniter the access pattern and automatically move storage class.
+
+AWS:
+
+* Monitors access
+* Moves object between frequent and infrequent tiers
+
+No manual lifecycle required.
+
+Small monitoring cost.
+
+Used when:
+Future access pattern uncertain.
+
+```
+NOTE:
+Intelligent Tiering has a minimum object size of 128KB for auto-tiering. If I upload millions of tiny 10KB files, they:
+- Never move to infrequent access (stuck in high cost).
+- Still incur the monitoring fee per object. Rule: Only use this for larger files (images, backups, videos), not tiny logs.
