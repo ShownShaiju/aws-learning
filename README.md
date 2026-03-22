@@ -44,7 +44,7 @@ The goal is to understand **how AWS services behave in real systems**, not just 
 - `day-12-route53-and-global-accelerator.md`
   DNS fundamentals, routing policies, health checks, and global traffic optimization.
 
-- `day-13-elastic-ip-&-elastic-cache(Redis).md`
+- `day-13-elastic-ip-&-Elastic-Cache(Redis).md`
   Elastic IP behavior, static addressing patterns, and caching fundamentals with ElastiCache.
 
 More topics will be added as learning progresses.
