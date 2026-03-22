@@ -1,4 +1,4 @@
-# AWS – Day 12: Elastic IP & ElastiCache (Redis)
+# AWS – Day 13: Elastic IP & ElastiCache (Redis)
 
 
 # What is Elastic IP (EIP)
